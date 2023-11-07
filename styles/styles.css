@@ -31,6 +31,11 @@ main {
   background-color: red;
 }
 
+.challenger-div {
+  text-align: center;
+  font-size: 2rem;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
