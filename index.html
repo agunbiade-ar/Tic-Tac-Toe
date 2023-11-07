@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="./styles/skeleton.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <h2>Tic Tac Toe</h2>
+    <section>
+      <form>
+        <label for="challenger">Select your opponent</label>
+        <select name="challenger" id="challenger">
+          <option value="player">Player</option>
+          <option value="randomAI">Random A.I</option>
+        </select>
+        <div>
+          <button class="button-primary start">Start Game</button>
+          <button class="danger">Reset Game</button>
+        </div>
+      </form>
+    </section>
+    <main>
+      <table>
+        <tbody>
+          <tr>
+            <td class="cell" id="0"></td>
+            <td class="cell" id="1"></td>
+            <td class="cell" id="2"></td>
+          </tr>
+          <tr>
+            <div class="result"><h1>You Win!</h1></div>
+            <td class="cell" id="3"></td>
+            <td class="cell" id="4"></td>
+            <td class="cell" id="5"></td>
+          </tr>
+          <tr>
+            <td class="cell" id="6"></td>
+            <td class="cell" id="7"></td>
+            <td class="cell" id="8"></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
