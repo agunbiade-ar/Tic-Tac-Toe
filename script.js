@@ -15,7 +15,7 @@ const player = (name, sign, turn) => {
   return { name, sign, turn };
 };
 
-const humanPlayer = player('farid', 'X', true);
+let humanPlayer;
 
 let playerTwo;
 let board = Array.from({ length: 9 }, (value, index) => index);
@@ -63,10 +63,11 @@ function updateResult(text) {
 function updateSpot(index, player) {
   board[index] = player.sign;
   allCells[index].innerText = player.sign;
-  console.log(board, allCells[index].innerText);
+  // console.log(board, allCells[index].innerText);
 
   let winObject = checkForWin(player.sign);
   if (winObject) {
+    console.log(winObject);
     if (player == humanPlayer) updateResult(`player ${1} wins`);
     else if (player == playerTwo) {
       updateResult(`player ${2} wins`);
@@ -80,6 +81,7 @@ function updateSpot(index, player) {
     allCells.forEach((cell) =>
       cell.removeEventListener('click', playerClick, false)
     );
+    return true;
   } else if (checkForTie()) {
     //check for tie
     updateResult('Tie Game');
@@ -99,11 +101,13 @@ function toggleTurns() {
 
 function playerClick(e) {
   if (typeof board[e.target.id] == 'number' && humanPlayer.turn) {
-    updateSpot(e.target.id, humanPlayer);
-    toggleTurns();
-    if (playerTwo.name == 'randomAI' && playerTwo.turn) {
-      updateSpot(bestSpotRandom(), playerTwo);
+    let win = updateSpot(e.target.id, humanPlayer);
+    if (!win) {
       toggleTurns();
+      if (playerTwo.name == 'randomAI' && playerTwo.turn) {
+        updateSpot(bestSpotRandom(), playerTwo);
+        toggleTurns();
+      }
     }
   } else {
     playerTwoClick(e);
@@ -122,6 +126,7 @@ function startGame(e) {
   e.preventDefault();
 
   choice = document.querySelector('#challenger').value;
+  humanPlayer = player('farid', 'X', true);
   if (choice == 'randomAI') {
     playerTwo = player('randomAI', 'O', false);
   } else {
