@@ -146,6 +146,7 @@ function resetGame(e) {
     });
   }
   board = Array.from({ length: 9 }, (value, index) => index);
+  playerTwo = null;
 }
 
 let reset = document.getElementsByClassName('danger')[0];
